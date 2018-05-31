@@ -150,6 +150,7 @@ func main() {
 	region := flag.String("region", "us-east-1", "AWS Region.")
 	hash := flag.String("hash", "", "Print hash value for a string and exit.")
 	gen := flag.Bool("gen", false, "Generate Users and exit.")
+	records := flag.Int("records", 10, "Number of records to generate.")
 
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "Usage: %s [OPTIONS] <S3Bucket> <S3Prefix>\n", os.Args[0])
@@ -163,7 +164,7 @@ func main() {
 	}
 
 	if *gen {
-		cnt := 10
+		cnt := *records
 
 		for ii := 0; ii < cnt; ii++ {
 			u := RandomUser()
